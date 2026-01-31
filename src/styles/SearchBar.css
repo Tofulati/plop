@@ -1,0 +1,54 @@
+/* src/styles/SearchBar.css */
+.search-container {
+  position: absolute;
+  top: 15px;
+  left: 50%; /* start centering */
+  transform: translateX(-50%); /* center relative to its width */
+  width: 50%; /* take up half the space between left and sidebar */
+  max-width: 400px; /* optional: limit maximum width */
+  z-index: 1000;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  background: #fff;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 1024px) {
+  .search-container {
+    width: 60%; /* slightly wider on smaller screens */
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-container {
+    position: relative; /* relative for stacked layout */
+    left: auto;
+    transform: none;
+    width: calc(100% - 20px);
+    margin: 10px auto;
+  }
+
+  .content {
+    flex-direction: column;
+  }
+
+  .map-container {
+    flex: 1 1 60%;
+    height: 50vh;
+  }
+
+  .sidebar {
+    flex: 1 1 40%;
+    height: 50vh;
+    border-left: none;
+    border-top: 1px solid #ddd;
+  }
+}
