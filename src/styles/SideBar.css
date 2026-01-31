@@ -1,0 +1,34 @@
+.sidebar {
+  flex: 1;
+  background: #ffffff;
+  border-left: 1px solid #ddd;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.sidebar p {
+  margin: 5px 0;
+}
+
+.images img {
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+/* Empty sidebar placeholder */
+.sidebar-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: italic;
+  color: #777;
+  height: 100%;
+}

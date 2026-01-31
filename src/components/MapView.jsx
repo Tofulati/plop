@@ -1,14 +1,30 @@
-import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, ZoomControl, useMap } from "react-leaflet";
+import { useEffect } from "react";
 import "leaflet/dist/leaflet.css";
 
-export default function MapView({ restrooms, setSelectedRestroom }) {
+function RecenterMap({center, bounds}) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (bounds) {
+      map.fitBounds(bounds, {padding: [20, 20]});
+    } else {
+      map.setView(center, map.getZoom());
+    }
+  }, [center, bounds, map]);
+
+  return null;
+}
+
+export default function MapView({ restrooms, mapCenter, mapBounds, setSelectedRestroom }) {
   return (
     <MapContainer
-      center={[40.785091, -73.968285]} // default center
+      center={mapCenter}
       zoom={13}
       style={{ height: "100%", width: "100%" }}
       zoomControl={false}
     >
+      <RecenterMap center={mapCenter} bounds={mapBounds}/>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

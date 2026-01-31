@@ -1,13 +1,12 @@
 import { useState } from "react";
-import '../styles/SearchBar.css';
+import "../styles/SearchBar.css";
 
-export default function SearchBar() {
+export default function SearchBar({ onSearch }) {
   const [query, setQuery] = useState("");
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      console.log("Searching for:", query);
-      // Integrate Nominatim search here later
+    if (e.key === "Enter" && query.trim()) {
+      onSearch(query);
     }
   };
 
