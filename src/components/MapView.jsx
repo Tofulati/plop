@@ -1,9 +1,9 @@
-import { MapContainer, TileLayer, Marker, Popup, ZoomControl, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, ZoomControl, useMapEvents } from "react-leaflet";
 import { useEffect } from "react";
 import "leaflet/dist/leaflet.css";
 
 function RecenterMap({center, bounds}) {
-  const map = useMap();
+  const map = useMapEvents({});
 
   useEffect(() => {
     if (bounds) {
@@ -16,7 +16,15 @@ function RecenterMap({center, bounds}) {
   return null;
 }
 
-export default function MapView({ restrooms, mapCenter, mapBounds, setSelectedRestroom }) {
+function ClickHandler({ onMapClick }) {
+  useMapEvents({
+    click(e) {
+      if (onMapClick) onMapClick([e.latlng.lat, e.latlng.lng]);
+    },
+  });
+}
+
+export default function MapView({ restrooms, mapCenter, mapBounds, setSelectedRestroom, onMapClick }) {
   return (
     <MapContainer
       center={mapCenter}
@@ -25,6 +33,7 @@ export default function MapView({ restrooms, mapCenter, mapBounds, setSelectedRe
       zoomControl={false}
     >
       <RecenterMap center={mapCenter} bounds={mapBounds}/>
+      {onMapClick && <ClickHandler onMapClick={onMapClick}/>}
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

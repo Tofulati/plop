@@ -1,4 +1,3 @@
-/* src/styles/HomePage.css */
 .homepage {
   height: 100vh;
   width: 100vw;
@@ -15,5 +14,25 @@
 .map-container {
   flex: 3;
   height: 100%;
-  position: relative; /* for absolute search bar inside */
+  position: relative; 
+}
+
+.add-restroom-btn {
+  position: absolute;
+  bottom: 30px;  
+  left: 30px;
+  z-index: 1100;
+  padding: 10px 14px;
+  background-color: black;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: background-color 0.2s ease;
+}
+
+.add-restroom-btn.active {
+  background-color: #4caf50;
 }
